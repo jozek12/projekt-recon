@@ -1,0 +1,47 @@
+🔧 Project Plan: Movie Recommender System
+✅ Step 1: Choose Dataset
+
+Start with a broad dataset first. You can always filter for anime later.
+
+    Option A (best starter): MovieLens dataset
+
+        100k or 1M ratings, includes movie titles, genres, and user ratings
+
+        Simple structure, good for collaborative filtering
+
+    Option B: IMDb or TMDB + anime filtering
+
+        Needs more cleaning and merging
+
+        Great for anime-only version, but more complex
+
+✅ Step 2: Choose Recommender Type
+
+Let’s keep it beginner-friendly:
+Type	Description	Good For Beginners?
+Content-Based Filtering	Recommends similar movies based on genre, description, etc.	✅ Yes
+Collaborative Filtering	Recommends based on similar users' ratings	✅ Yes, with built-in tools
+Hybrid	Mix of both	Later!
+
+Start with content-based or item-based collaborative filtering using scikit-learn.
+✅ Step 3: Basic Project Features
+
+    Input: a movie title (e.g., “Spirited Away” or “The Witcher: Nightmare of the Wolf”)
+
+    Output: top 5–10 similar movies
+
+    Filters: genre (optional), minimum rating, release year
+
+✅ Step 4: (Optional) Anime Mode
+
+Once the base system works:
+
+    Filter your dataset to include only anime movies (via genre tags or custom list)
+
+    Bonus: allow the user to toggle "anime only" on/off
+
+    Use anime-specific tags from TMDB or AniList APIs later
+Let’s make the decision tree simple:
+⬜ MovieLens base project
+⬜ Anime-only mode later
+⬜ You pick the input (e.g., “I liked X”)

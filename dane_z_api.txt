@@ -1,0 +1,6 @@
+title ('english','native') -> string list (text)
+description -> string (text)
+coverImage{extralarge} -> image #moze mniejsze jak wydajnosciowo nie da rady {medium}
+genres -> string list (text)
+averageScore -> int (integer)
+seasonYear -> int(integer)
