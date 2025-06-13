@@ -1,5 +1,5 @@
-from db_scripts import connection
-conn = connection.get_connection("recon.db")
+from db_scripts.connection import get_connection
+conn = get_connection("recon.db")
 c = conn.cursor()
 c.execute("""CREATE TABLE IF NOT EXISTS movies  (
           movie_id integer PRIMARY KEY,

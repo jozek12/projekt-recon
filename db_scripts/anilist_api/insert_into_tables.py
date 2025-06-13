@@ -25,6 +25,6 @@ def insert_into(data):
         result = c.fetchone()
         c.execute(
                 "INSERT INTO movies_genres (movies_id, genre_id) VALUES (?, ?)",
-                (movie_id, genre_id)
+                (movie_id, result)
             )
     conn.close()

@@ -1,5 +1,4 @@
-from connection import get_connection
-
+from db_scripts.connection import get_connection
 def insert_into(data):
     conn = get_connection('recon.db')
     c = conn.cursor()
