@@ -1,8 +1,8 @@
 import requests
 from time import sleep
 #uncomment valid one
-from insert_into_tables import insert_into
-#from table_movies_genres import insert_into
+#from insert_into_tables import insert_into
+from db_scripts.anilist_api.table_movies_genres import insert_into
 query_template = '''
 query ($page: Int) {
   Page(page: $page, perPage: 50) {

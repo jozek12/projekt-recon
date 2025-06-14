@@ -8,9 +8,9 @@ def insert_into(data):
 
     for genre_name in genre_names:
         c.execute("SELECT genre_id FROM genres_list WHERE name = ?", (genre_name,))
-        result = c.fetchone()
+        result = c.fetchone()[0]
         c.execute(
-                "INSERT INTO movies_genres (movies_id, genre_id) VALUES (?, ?)",
+                "INSERT OR REPLACE INTO movies_genres (movies_id, genre_id) VALUES (?, ?)",
                 (movie_id, result)
             )
     conn.commit()

@@ -1,3 +1,2 @@
-from temp import get_data
-data = get_data()
-print(data['coverImage']['extraLarge'])
+x = 8
+print(1+((x+8)*(100-1))/(8+8))
