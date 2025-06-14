@@ -40,7 +40,7 @@ for user_counter in range(how_much_users):
             liked = user_prefs[user]["liked"]
             disliked = user_prefs[user]["disliked"]
 
-            how_much_ratings = random.randint(1,20)
+            how_much_ratings = random.randint(1,50)
 
             used_movies = set()
             

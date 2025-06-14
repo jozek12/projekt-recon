@@ -1,9 +1,11 @@
 from db_scripts import connection
 from random import randint
 conn = connection.get_connection("recon.db")
-how_much_dislike = 1 
-how_much_like = 2
+how_much_dislike = 4 
+how_much_like = 4
 c = conn.cursor()
+c.execute("DELETE FROM Users_preferences")
+conn.commit()
 max_genre_id = c.execute("""SELECT MAX(genre_id) FROM genres_list""").fetchone()[0]
 max_user_id = c.execute("""SELECT MAX(user_id) FROM Users""").fetchone()[0]
 for user in range(max_user_id):
