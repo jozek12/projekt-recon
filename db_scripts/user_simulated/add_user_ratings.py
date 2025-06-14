@@ -2,7 +2,8 @@ from db_scripts import connection
 import random
 conn = connection.get_connection("recon.db")
 c = conn.cursor()
-
+c.execute("DELETE FROM Users_ratings")
+conn.commit()
 c.execute("""
 SELECT user_id, genre_id, status FROM Users_preferences
 """)
@@ -27,15 +28,22 @@ for movies_id, genre_id in movie_genres_raw:
         movie_genres[movies_id] = {genre_id}
     else:
         movie_genres[movies_id].add(genre_id)
+
+ratings = []
+used_users = set()
 for user_counter in range(how_much_users):
-    used_users = set()
+
     while True:
         user = random.randint(1,max_user_id)
         if user not in used_users:
+            
             liked = user_prefs[user]["liked"]
             disliked = user_prefs[user]["disliked"]
-            how_much_ratings = random.randint(1,100)
+
+            how_much_ratings = random.randint(1,20)
+
             used_movies = set()
+            
             for rating_counter in range(how_much_ratings):
                 while True:
                     movie = random.choice(all_movies_id)
@@ -44,17 +52,20 @@ for user_counter in range(how_much_users):
                         count_liked = (len(liked.intersection(genres)))
                         count_disliked = (len(disliked.intersection(genres)))
                         difference_status = count_liked - count_disliked
+                        difference_status = max(-8, min(8, difference_status))
 
-                        value = 1+((difference_status+5)*(100-1))/(10)
-                        standard_deviation = 20 #change deviation when nessessary
+                        value = 1+((difference_status+8)*(100-1))/(16)
+                        standard_deviation = 12 #change deviation when nessessary
+
                         random_value = int(random.gauss(value,standard_deviation))
                         random_value = max(1,min(100,random_value))
-                        c.execute("""INSERT OR REPLACE INTO Users_ratings VALUES(?,?,?)
 
-                        """,(user,movie,random_value))
+                        ratings.append((user,movie,random_value))
                         used_movies.add(movie)
                         break
             used_users.add(user)
             break
+c.executemany("""INSERT OR REPLACE INTO Users_ratings VALUES(?,?,?)
+""",(ratings))
 conn.commit()
 conn.close()
